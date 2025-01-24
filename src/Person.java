@@ -33,7 +33,7 @@ public class Person {
     public Person(String name, String surname, String taxCode) {
         this.name = name;
         this.surname = surname;
-        this.taxCode = validateTaxCode(this.taxCode);
+        this.taxCode = validateTaxCode(taxCode);
     }
 
     /**
@@ -43,13 +43,13 @@ public class Person {
      * @return the validated tax code in uppercase
      * @throws IllegalArgumentException if the tax code is invalid
      */
-    public String validateTaxCode(String taxCode) {
-        if (taxCode == null || !taxCode.matches("[A-Z]{6}[0-9]{2}[A-Z0-9]{8}")) {
+    private String validateTaxCode(String taxCode) {
+        if (taxCode == null || !taxCode.matches("^[A-Z]{6}[0-9]{2}[A-Z0-9]{8}$")) {
             throw new IllegalArgumentException("Codice fiscale non valido");
         }
         return taxCode.toUpperCase();
     }
-
+    
     /**
      * Gets the name of the person.
      *
